@@ -12,7 +12,7 @@ from pynput import keyboard
 
 ## function defined to play and pause the audio file
 def play_pause(file):
-    paused = False    # global to track if the audio is paused
+    paused = False # global to track if the audio is paused
 
     # you audio here
     wf = wave.open(file, 'rb')
