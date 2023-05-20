@@ -7,6 +7,11 @@
 - python 3
 - tkinter module
 - from tkinter messagebox module
+- playsound
+- pyaudio
+- wave
+- time
+- pynput
 
 ****
 
