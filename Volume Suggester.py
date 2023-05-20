@@ -25,6 +25,7 @@ def play_pause(file):
         data = wf.readframes(frame_count)
         return (data, pyaudio.paContinue)
 
+    ## on_press function defined
     def on_press(key):
         global paused
         print (key)
