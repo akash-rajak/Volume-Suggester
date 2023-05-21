@@ -10,6 +10,10 @@ import time
 from pynput import keyboard
 
 
+## function to convert .mp3 to .wav
+def mp3towav():
+    pass
+
 ## function defined to play and pause the audio file
 def play_pause(file):
     paused = False # global to track if the audio is paused
