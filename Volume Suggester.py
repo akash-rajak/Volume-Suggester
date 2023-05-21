@@ -7,8 +7,10 @@ import pyaudio
 import wave
 import time
 from pynput import keyboard
+from pydub import AudioSegment
 
 
+file = "" ## global variable declared to store file location
 paused = False # global to track if the audio is paused
 stopped = False # global variable declared to keep track of stopping audio
 
@@ -17,8 +19,8 @@ def mp3towav():
     pass
 
 ## function defined to play and pause the audio file
-def play_pause_stop(file):
-    global paused, stopped
+def play_pause_stop():
+    global paused, stopped, file
 
     ## opening .wav audio fle
     wf = wave.open(file, 'rb')
@@ -81,8 +83,24 @@ def play_pause_stop(file):
     p.terminate()
 
 
+## function defined to extract generic features of audio file
+def extract():
+    global file
+    # Load files
+    audio_segment = AudioSegment.from_file(file)
+    # Print attributes
+    print(f"Channels: {audio_segment.channels}")
+    print(f"Sample width: {audio_segment.sample_width}")
+    print(f"Frame rate (sample rate): {audio_segment.frame_rate}")
+    print(f"Frame width: {audio_segment.frame_width}")
+    print(f"Length (ms): {len(audio_segment)}")
+    print(f"Frame count: {audio_segment.frame_count()}")
+    print(f"Intensity: {audio_segment.dBFS}")
+
+
 ## defining main function
 def main():
+    global file
     print("Select Audio file : ")
     file = filedialog.askopenfilename(title="Select file")
     if (file != ""):
@@ -90,10 +108,13 @@ def main():
         # playsound(file)
 
         ## calling play_pause_stop function
-        play_pause_stop(file)
+        # play_pause_stop(file)
     else:
         print("No File Selected")
 
 
 ## calling main function
 main()
+play_pause_stop()
+extract()
+
