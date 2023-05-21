@@ -10,15 +10,18 @@ import time
 from pynput import keyboard
 
 
+paused = False # global to track if the audio is paused
+stopped = False # global variable declared to keep track of stopping audio
+
 ## function to convert .mp3 to .wav
 def mp3towav():
     pass
 
 ## function defined to play and pause the audio file
-def play_pause(file):
-    paused = False # global to track if the audio is paused
+def play_pause_stop(file):
+    global paused, stopped
 
-    # you audio here
+    ## opening .wav audio fle
     wf = wave.open(file, 'rb')
 
     # instantiate PyAudio
@@ -31,24 +34,22 @@ def play_pause(file):
 
     ## on_press function defined
     def on_press(key):
-        global paused
-        print (key)
-        if key == keyboard.Key.space:
+        global paused, stopped
+        # print (key)
+        if key == keyboard.Key.ctrl_l or key == keyboard.Key.ctrl_r:
             if stream.is_stopped():     # time to play audio
-                print ('play pressed')
+                print ('[CTRL Pressed] Audio Playing...')
                 stream.start_stream()
                 paused = False
                 return False
             elif stream.is_active():   # time to pause audio
-                print ('pause pressed')
+                print ('[CTRL Pressed] Audio Paused...')
                 stream.stop_stream()
                 paused = True
                 return False
         elif key == keyboard.Key.esc:
-            stream.stop_stream()
-            stream.close()
-            wf.close()
-            p.terminate()
+            print("[ESC Pressed] Audio Stopped...")
+            stopped = True
             return False
         return False
 
@@ -61,8 +62,11 @@ def play_pause(file):
 
     # start the stream
     stream.start_stream()
+    print("Stream Starts...")
 
     while stream.is_active() or paused==True:
+        if stopped==True:
+            break
         with keyboard.Listener(on_press=on_press) as listener:
             listener.join()
         time.sleep(0.1)
@@ -71,6 +75,8 @@ def play_pause(file):
     stream.stop_stream()
     stream.close()
     wf.close()
+
+    print("Stream Ends...")
 
     # close PyAudio
     p.terminate()
@@ -84,7 +90,8 @@ def main():
         print(file)
         # playsound(file)
 
-        play_pause(file)
+        ## calling play_pause_stop function
+        play_pause_stop(file)
     else:
         print("No File Selected")
 
