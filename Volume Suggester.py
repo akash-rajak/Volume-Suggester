@@ -12,6 +12,7 @@ import wave
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import librosa
 
 
 file = "" ## global variable declared to store file location
@@ -142,6 +143,20 @@ def amplitude_wave():
     plt.show()
 
 
+## function defined to generate spectogram graph
+def spectogram():
+    global file
+
+    x, sr = librosa.load(file)
+    # Spectrogram of frequency
+    X = librosa.stft(x)
+    Xdb = librosa.amplitude_to_db(abs(X))
+    plt.figure(figsize=(15, 5))
+    librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
+    plt.colorbar()
+    plt.show()
+
+
 ## defining main function
 def main():
     global file
@@ -162,4 +177,4 @@ main()
 play_pause_stop()
 extract()
 amplitude_wave()
-
+spectogram()
