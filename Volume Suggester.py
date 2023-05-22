@@ -8,6 +8,10 @@ import wave
 import time
 from pynput import keyboard
 from pydub import AudioSegment
+import wave
+import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 file = "" ## global variable declared to store file location
@@ -115,6 +119,28 @@ def extract():
 def amplitude_wave():
     global file
 
+    file_name = os.path.basename(file)
+
+    # Open wav file and read frames as bytes
+    sf_filewave = wave.open(file, 'r')
+    signal_sf = sf_filewave.readframes(-1)
+    # Convert audio bytes to integers
+    soundwave_sf = np.frombuffer(signal_sf, dtype='int16')
+    # Get the sound wave frame rate
+    framerate_sf = sf_filewave.getframerate()
+    # Find the sound wave timestamps
+    time_sf = np.linspace(start=0, stop=len(soundwave_sf) / framerate_sf, num=len(soundwave_sf))
+    # Set up plot
+    f, ax = plt.subplots(figsize=(15, 5))
+    # Setup the title and axis titles
+    plt.title('Amplitude over Time')
+    plt.ylabel('Amplitude')
+    plt.xlabel('Time (seconds)')
+    # Add the audio data to the plot
+    plt.plot(time_sf, soundwave_sf, label=file_name, alpha=0.5)
+    plt.legend()
+    plt.show()
+
 
 ## defining main function
 def main():
@@ -135,4 +161,5 @@ def main():
 main()
 play_pause_stop()
 extract()
+amplitude_wave()
 
