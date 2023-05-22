@@ -157,6 +157,26 @@ def spectogram():
     plt.show()
 
 
+## function defined to generate RMS/Enerygy Spectogram
+def rms_energy_spectogram():
+    global file
+
+    y, sr = librosa.load(file)
+    # Get RMS value from each frame's magnitude value
+    S, phase = librosa.magphase(librosa.stft(y))
+    rms = librosa.feature.rms(S=S)
+    # Plot the RMS energy
+    fig, ax = plt.subplots(figsize=(15, 6), nrows=2, sharex=True)
+    times = librosa.times_like(rms)
+    ax[0].semilogy(times, rms[0], label='RMS Energy')
+    ax[0].set(xticks=[])
+    ax[0].legend()
+    ax[0].label_outer()
+    librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max), y_axis='log', x_axis='time', ax=ax[1])
+    ax[1].set(title='log Power spectrogram')
+    plt.show()
+
+
 ## defining main function
 def main():
     global file
@@ -178,3 +198,4 @@ play_pause_stop()
 extract()
 amplitude_wave()
 spectogram()
+rms_energy_spectogram()
