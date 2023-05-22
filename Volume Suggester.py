@@ -18,6 +18,10 @@ stopped = False # global variable declared to keep track of stopping audio
 def mp3towav():
     pass
 
+'''
+ctrl - to play and pause
+esc - to stop
+'''
 ## function defined to play and pause the audio file
 def play_pause_stop():
     global paused, stopped, file
@@ -82,13 +86,22 @@ def play_pause_stop():
     # close PyAudio
     p.terminate()
 
-
+'''
+Channels: number of channels; 1 for mono, 2 for stereo audio
+Sample width: number of bytes per sample; 1 means 8-bit, 2 means 16-bit
+Frame rate/Sample rate: frequency of samples used (in Hertz)
+Frame width: Number of bytes for each “frame”. One frame contains a sample for each channel.
+Length: audio file length (in milliseconds)
+Frame count: the number of frames from the sample
+Intensity: loudness in dBFS (dB relative to the maximum possible loudness)
+'''
 ## function defined to extract generic features of audio file
 def extract():
     global file
     # Load files
     audio_segment = AudioSegment.from_file(file)
     # Print attributes
+    print("\n\nAudio Generic Features : ")
     print(f"Channels: {audio_segment.channels}")
     print(f"Sample width: {audio_segment.sample_width}")
     print(f"Frame rate (sample rate): {audio_segment.frame_rate}")
