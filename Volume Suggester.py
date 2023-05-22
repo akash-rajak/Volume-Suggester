@@ -98,6 +98,11 @@ def extract():
     print(f"Intensity: {audio_segment.dBFS}")
 
 
+## function defined to generate amplitude wave
+def amplitude_wave():
+    global file
+
+
 ## defining main function
 def main():
     global file
