@@ -12,6 +12,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import librosa
+import mutagen
+from mutagen.wave import WAVE
 
 
 file = "" ## global variable declared to store file location
@@ -100,6 +102,18 @@ Frame count: the number of frames from the sample
 Intensity: loudness in dBFS (dB relative to the maximum possible loudness)
 '''
 ## function defined to extract generic features of audio file
+
+# function to convert the information into
+# some readable format
+def audio_duration(length):
+    hours = length // 3600 # calculate in hours
+    length %= 3600
+    mins = length // 60 # calculate in minutes
+    length %= 60
+    seconds = length # calculate in seconds
+
+    return hours, mins, seconds # returns the duration
+
 def extract():
     global file
     # Load files
@@ -110,6 +124,14 @@ def extract():
     print(f"Sample width: {audio_segment.sample_width}")
     print(f"Frame rate (sample rate): {audio_segment.frame_rate}")
     print(f"Frame width: {audio_segment.frame_width}")
+    print(f"Duration (sec): {audio_segment.frame_count()/audio_segment.frame_rate}")
+
+    audio = WAVE(file)
+    audio_info = audio.info
+    length = int(audio_info.length)
+    hours, mins, seconds = audio_duration(length)
+    print('Total Duration: {}:{}:{}'.format(hours, mins, seconds))
+
     print(f"Length (ms): {len(audio_segment)}")
     print(f"Frame count: {audio_segment.frame_count()}")
     print(f"Intensity: {audio_segment.dBFS}")
