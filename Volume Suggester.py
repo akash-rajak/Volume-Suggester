@@ -71,7 +71,7 @@ def play_pause_stop():
 
     # start the stream
     stream.start_stream()
-    print("Stream Starts...")
+    print("\nStream Starts...")
 
     while stream.is_active() or paused==True:
         if stopped==True:
@@ -105,7 +105,7 @@ def extract():
     # Load files
     audio_segment = AudioSegment.from_file(file)
     # Print attributes
-    print("\n\nAudio Generic Features : ")
+    print("\nAudio Generic Features : ")
     print(f"Channels: {audio_segment.channels}")
     print(f"Sample width: {audio_segment.sample_width}")
     print(f"Frame rate (sample rate): {audio_segment.frame_rate}")
@@ -193,8 +193,8 @@ def main():
 
 ## calling main function
 main()
-play_pause_stop()
 extract()
+play_pause_stop()
 amplitude_wave()
 spectogram()
 rms_energy_spectogram()
