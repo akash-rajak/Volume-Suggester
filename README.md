@@ -3,7 +3,7 @@
 - In backend, it extracts various generic features for particular audio and analyze among them and provide feedback on volumne on it.  
 - This tools helps in maintaining goob vibes along the music playout.
 <p align="center">
-	<img width = 1000 src="Images/Template Image.jpg" />
+	<img width = 1000 height = 100 src="Images/Template Image.jpg" />
 </p>
 ****
 
