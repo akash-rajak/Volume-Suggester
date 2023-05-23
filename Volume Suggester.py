@@ -24,6 +24,11 @@ wav_file = "" ## global variable declared to store the file location
 paused = False # global to track if the audio is paused
 stopped = False # global variable declared to keep track of stopping audio
 
+'''
+ffmpeg path 
+MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
+Personal : C:/Users/aakas\PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
+'''
 ## function to convert .mp3 to .wav
 def mp3towav():
     global file, wav_file
@@ -32,7 +37,7 @@ def mp3towav():
     base_file_name = Path(file).stem
     wav_file = dir_name + "/" + base_file_name + "_wav" + ".wav"
     # print(wav_file)
-    subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
+    subprocess.call(['C:/Users/aakas\PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
 '''
 ctrl - to play and pause
@@ -228,6 +233,6 @@ main()
 mp3towav()
 extract()
 play_pause_stop()
-amplitude_wave()
-spectogram()
-rms_energy_spectogram()
+# amplitude_wave()
+# spectogram()
+# rms_energy_spectogram()
