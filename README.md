@@ -5,13 +5,22 @@
 
 ### REQUIREMENTS :
 - python 3
-- tkinter module
-- from tkinter messagebox module
-- playsound
+- tkinter
+- from tkinter import filedialog
 - pyaudio
-- wave
 - time
-- pynput
+- from pynput import keyboard
+- from pydub import AudioSegment
+- wave
+- os
+- numpy
+- matplotlib.pyplot
+- librosa
+- mutagen
+- from mutagen.wave import WAVE
+- subprocess
+- pathlib
+- from pathlib import Path
 
 ****
 
@@ -27,5 +36,6 @@
 </p>
 
 ****
+
 ### Owner :
 - Akash Rajak
