@@ -216,7 +216,7 @@ def rms_energy_spectogram():
 def main():
     global file
     print("Select Audio file : ")
-    file = filedialog.askopenfilename(title="Select file")
+    file = filedialog.askopenfilename(title="Select an Audio file", filetypes=[("Audio Files", "*.mp3"), ("All Files", "*.*")])
     if (file != ""):
         print(file)
         # playsound(file)
