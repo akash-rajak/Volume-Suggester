@@ -26,7 +26,7 @@ stopped = False # global variable declared to keep track of stopping audio
 '''
 ffmpeg path 
 MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
-Personal : C:/Users/aakas\PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
+Personal : C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
 '''
 ## function to convert .mp3 to .wav
 def mp3towav():
@@ -36,7 +36,7 @@ def mp3towav():
     base_file_name = Path(file).stem
     wav_file = dir_name + "/" + base_file_name + "_wav" + ".wav"
     # print(wav_file)
-    subprocess.call(['C:/Users/aakas\PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
+    subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
 '''
 ctrl - to play and pause
