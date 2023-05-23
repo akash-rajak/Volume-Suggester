@@ -14,15 +14,25 @@ import matplotlib.pyplot as plt
 import librosa
 import mutagen
 from mutagen.wave import WAVE
+import subprocess
+import pathlib
+from pathlib import Path
 
 
 file = "" ## global variable declared to store file location
+wav_file = "" ## global variable declared to store the file location
 paused = False # global to track if the audio is paused
 stopped = False # global variable declared to keep track of stopping audio
 
 ## function to convert .mp3 to .wav
 def mp3towav():
-    pass
+    global file, wav_file
+
+    dir_name = os.path.dirname(file)
+    base_file_name = Path(file).stem
+    wav_file = dir_name + "/" + base_file_name + ".wav"
+    # print(wav_file)
+    subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
 
 '''
 ctrl - to play and pause
@@ -30,10 +40,10 @@ esc - to stop
 '''
 ## function defined to play and pause the audio file
 def play_pause_stop():
-    global paused, stopped, file
+    global paused, stopped, file, wav_file
 
     ## opening .wav audio fle
-    wf = wave.open(file, 'rb')
+    wf = wave.open(wav_file, 'rb')
 
     # instantiate PyAudio
     p = pyaudio.PyAudio()
@@ -115,9 +125,9 @@ def audio_duration(length):
     return hours, mins, seconds # returns the duration
 
 def extract():
-    global file
+    global file, wav_file
     # Load files
-    audio_segment = AudioSegment.from_file(file)
+    audio_segment = AudioSegment.from_file(wav_file)
     # Print attributes
     print("\nAudio Generic Features : ")
     print(f"Channels: {audio_segment.channels}")
@@ -126,7 +136,7 @@ def extract():
     print(f"Frame width: {audio_segment.frame_width}")
     print(f"Duration (sec): {audio_segment.frame_count()/audio_segment.frame_rate}")
 
-    audio = WAVE(file)
+    audio = WAVE(wav_file)
     audio_info = audio.info
     length = int(audio_info.length)
     hours, mins, seconds = audio_duration(length)
@@ -139,12 +149,12 @@ def extract():
 
 ## function defined to generate amplitude wave
 def amplitude_wave():
-    global file
+    global file, wav_file
 
     file_name = os.path.basename(file)
 
     # Open wav file and read frames as bytes
-    sf_filewave = wave.open(file, 'r')
+    sf_filewave = wave.open(wav_file, 'r')
     signal_sf = sf_filewave.readframes(-1)
     # Convert audio bytes to integers
     soundwave_sf = np.frombuffer(signal_sf, dtype='int16')
@@ -166,9 +176,9 @@ def amplitude_wave():
 
 ## function defined to generate spectogram graph
 def spectogram():
-    global file
+    global file, wav_file
 
-    x, sr = librosa.load(file)
+    x, sr = librosa.load(wav_file)
     # Spectrogram of frequency
     X = librosa.stft(x)
     Xdb = librosa.amplitude_to_db(abs(X))
@@ -180,9 +190,9 @@ def spectogram():
 
 ## function defined to generate RMS/Enerygy Spectogram
 def rms_energy_spectogram():
-    global file
+    global file, wav_file
 
-    y, sr = librosa.load(file)
+    y, sr = librosa.load(wav_file)
     # Get RMS value from each frame's magnitude value
     S, phase = librosa.magphase(librosa.stft(y))
     rms = librosa.feature.rms(S=S)
@@ -215,6 +225,7 @@ def main():
 
 ## calling main function
 main()
+mp3towav()
 extract()
 play_pause_stop()
 amplitude_wave()
