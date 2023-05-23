@@ -1,7 +1,6 @@
 
 ## importing necessary library
 from tkinter import filedialog, Tk
-from tkinter.filedialog import askdirectory
 from playsound import playsound
 import pyaudio
 import time
