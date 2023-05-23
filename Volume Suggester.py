@@ -30,7 +30,7 @@ def mp3towav():
 
     dir_name = os.path.dirname(file)
     base_file_name = Path(file).stem
-    wav_file = dir_name + "/" + base_file_name + ".wav"
+    wav_file = dir_name + "/" + base_file_name + "_wav" + ".wav"
     # print(wav_file)
     subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
 
