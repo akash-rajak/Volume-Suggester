@@ -56,7 +56,7 @@
 ### SCREENSHOTS :
 
 <p align="center">
-
+	<img width = 1000 height = 400 src="Images/Amplitude Over Time Plot.jpg" />
 </p>
 
 ****
