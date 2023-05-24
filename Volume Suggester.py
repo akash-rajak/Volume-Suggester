@@ -280,6 +280,13 @@ Chroma feature visualization is to know how dominant the characteristics of a ce
 def chroma_feature():
     global file, wav_file
 
+    x, sr = librosa.load(wav_file)
+    hop_length = 512
+    chromagram = librosa.feature.chroma_stft(y=x, sr=sr, hop_length=hop_length)
+    plt.figure(figsize=(15, 5))
+    librosa.display.specshow(chromagram, x_axis='time', y_axis='chroma', hop_length=hop_length, cmap='coolwarm')
+    plt.show()
+
 
 ## function defined to get the tempogram
 '''
