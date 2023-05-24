@@ -43,6 +43,10 @@ def mp3towav():
     subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
     # subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
+    ## creating folder for saving output plot
+    new_dir = pathlib.Path(dir_name, "Output")
+    new_dir.mkdir(parents=True, exist_ok=True)
+
 
 ## function defined to play and pause the audio file
 '''
@@ -182,6 +186,11 @@ def amplitude_wave():
     plt.plot(time_sf, soundwave_sf, label='Amplitude', alpha=0.5)
     plt.legend()
     plt.show()
+
+    dir_name = os.path.dirname(file)
+    new_dir = pathlib.Path(dir_name, "Output")
+    new_dir.mkdir(parents=True, exist_ok=True)
+    file_name = base_file_name + ".xlsx"
 
 
 ## function defined to generate spectogram graph
