@@ -37,6 +37,8 @@ def mp3towav():
     dir_name = os.path.dirname(file)
     base_file_name = Path(file).stem
     wav_file = dir_name + "/" + base_file_name + "_wav" + ".wav"
+    print("\nConverted .mp3 to .wav file and saved to same location from where .mp3 file selected...")
+    print("Created : " + str(Path(wav_file)))
     # print(wav_file)
     subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
     # subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
@@ -49,6 +51,7 @@ esc - to stop
 '''
 def play_pause_stop():
     global paused, stopped, file, wav_file
+    print("\nPlayer Starts...")
 
     ## opening .wav audio fle
     wf = wave.open(wav_file, 'rb')
@@ -91,7 +94,7 @@ def play_pause_stop():
 
     # start the stream
     stream.start_stream()
-    print("\nStream Starts...")
+    print("Stream Starts...")
 
     while stream.is_active() or paused==True:
         if stopped==True:
@@ -156,8 +159,9 @@ def extract():
 ## function defined to generate amplitude wave
 def amplitude_wave():
     global file, wav_file
+    print("\nGenerated Amplitude Wave Plot...")
 
-    file_name = os.path.basename(file)
+    file_name = os.path.basename(wav_file)
 
     # Open wav file and read frames as bytes
     sf_filewave = wave.open(wav_file, 'r')
@@ -171,11 +175,11 @@ def amplitude_wave():
     # Set up plot
     f, ax = plt.subplots(figsize=(15, 5))
     # Setup the title and axis titles
-    plt.title('Amplitude over Time')
+    plt.title(file_name + ' - Amplitude over Time')
     plt.ylabel('Amplitude')
-    plt.xlabel('Time (seconds)')
+    plt.xlabel('Time (sec)')
     # Add the audio data to the plot
-    plt.plot(time_sf, soundwave_sf, label=file_name, alpha=0.5)
+    plt.plot(time_sf, soundwave_sf, label='Amplitude', alpha=0.5)
     plt.legend()
     plt.show()
 
@@ -187,14 +191,18 @@ The vertical axis shows frequency, the horizontal axis shows the time of the cli
 '''
 def spectogram():
     global file, wav_file
+    print("\nGenerated Spectogram Plot...")
+    file_name = os.path.basename(wav_file)
 
     x, sr = librosa.load(wav_file)
     # Spectrogram of frequency
     X = librosa.stft(x)
     Xdb = librosa.amplitude_to_db(abs(X))
     plt.figure(figsize=(15, 5))
+    plt.title(file_name + ' - Spectogram')
     librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
     plt.colorbar()
+    # plt.legend()
     plt.show()
 
 
@@ -205,6 +213,8 @@ For loud and rock music RMS value is high
 '''
 def rms_energy_spectogram():
     global file, wav_file
+    print("\nGenerated RMS/Energy Spectogram Plot...")
+    file_name = os.path.basename(wav_file)
 
     y, sr = librosa.load(wav_file)
     # Get RMS value from each frame's magnitude value
@@ -214,11 +224,12 @@ def rms_energy_spectogram():
     fig, ax = plt.subplots(figsize=(15, 6), nrows=2, sharex=True)
     times = librosa.times_like(rms)
     ax[0].semilogy(times, rms[0], label='RMS Energy')
-    ax[0].set(xticks=[])
+    ax[0].set(title=file_name + ' - RMS Energy', xticks=[])
     ax[0].legend()
     ax[0].label_outer()
     librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max), y_axis='log', x_axis='time', ax=ax[1])
-    ax[1].set(title='log Power spectrogram')
+    ax[1].set(title=file_name + ' - log Power spectrogram')
+    # plt.legend()
     plt.show()
 
 
@@ -231,13 +242,16 @@ For loud and rock music ZCR value is high
 '''
 def zero_crossing_rate():
     global file, wav_file
+    print("\nGenerated Zero Crossing Rate Plot...")
+    file_name = os.path.basename(wav_file)
 
     y, sr = librosa.load(wav_file)
     zcrs = librosa.feature.zero_crossing_rate(y)
     print(f"Zero crossing rate: {sum(librosa.zero_crossings(y))}")
     plt.figure(figsize=(15, 3))
     plt.plot(zcrs[0])
-    plt.title('Action Rock')
+    plt.title(file_name + ' - Zero Crossing Rate')
+    # plt.legend()
     plt.show()
 
 
@@ -249,6 +263,8 @@ The MFCCs values on human speech seem to be lower and more dynamic than the musi
 '''
 def mel_frequency_cepstral_coefficients():
     global file, wav_file
+    print("\nGenerated Mel Frequency Cepstral Coefficients Plot...")
+    file_name = os.path.basename(wav_file)
 
     x, sr = librosa.load(wav_file)
     mfccs = librosa.feature.mfcc(y=x, sr=sr)
@@ -256,11 +272,14 @@ def mel_frequency_cepstral_coefficients():
     fig, ax = plt.subplots(figsize=(15, 3))
     img = librosa.display.specshow(mfccs, sr=sr, x_axis='time')
     fig.colorbar(img, ax=ax)
-    ax.set(title='Music - Warm Memories')
+    ax.set(title=file_name + ' - Mel Frequency Cepstral Coefficients')
+    # plt.legend()
     plt.show()
 
 def mel_frequency_spectogram():
     global file, wav_file
+    print("\nGenerated Mel Frequency Spectogram Plot...")
+    file_name = os.path.basename(wav_file)
 
     y, sr = librosa.load(wav_file)
     S = librosa.feature.melspectrogram(y=y, sr=sr)
@@ -269,7 +288,8 @@ def mel_frequency_spectogram():
     # fig, ax = plt.figure(figsize=(15, 3))
     img = librosa.display.specshow(S_dB, sr=sr, x_axis='time')
     fig.colorbar(img, ax=ax, format='%+2.0f dB')
-    ax.set(title='Mel-frequency spectrogram')
+    ax.set(title=file_name + ' - Mel frequency spectrogram')
+    # plt.legend()
     plt.show()
 
 
@@ -279,12 +299,16 @@ Chroma feature visualization is to know how dominant the characteristics of a ce
 '''
 def chroma_feature():
     global file, wav_file
+    print("\nGenerated Chroma Feature Plot...")
+    file_name = os.path.basename(wav_file)
 
     x, sr = librosa.load(wav_file)
     hop_length = 512
     chromagram = librosa.feature.chroma_stft(y=x, sr=sr, hop_length=hop_length)
     plt.figure(figsize=(15, 5))
     librosa.display.specshow(chromagram, x_axis='time', y_axis='chroma', hop_length=hop_length, cmap='coolwarm')
+    plt.title(file_name + ' - Chroma Feature')
+    # plt.legend()
     plt.show()
 
 
@@ -296,6 +320,8 @@ Upbeat music like hip-hop, techno, or rock usually has a higher tempo compared t
 '''
 def tempogram():
     global file, wav_file
+    print("\nGenerated Tempogram Plot...")
+    file_name = os.path.basename(wav_file)
 
     y, sr = librosa.load(wav_file)
     hop_length = 512
@@ -316,7 +342,8 @@ def tempogram():
     librosa.display.specshow(tempogram, sr=sr, hop_length=hop_length, x_axis='time', y_axis='tempo', cmap='magma', ax=ax[1])
     ax[1].axhline(tempo, color='w', linestyle='--', alpha=1, label='Estimated tempo={:g}'.format(tempo))
     ax[1].legend(loc='upper right')
-    ax[1].set(title='Tempogram')
+    ax[1].set(title=file_name + ' - Tempogram')
+    plt.legend()
     plt.show()
 
 
