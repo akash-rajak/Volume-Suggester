@@ -232,6 +232,14 @@ For loud and rock music ZCR value is high
 def zero_crossing_rate():
     global file, wav_file
 
+    y, sr = librosa.load(wav_file)
+    zcrs = librosa.feature.zero_crossing_rate(y)
+    print(f"Zero crossing rate: {sum(librosa.zero_crossings(y))}")
+    plt.figure(figsize=(15, 3))
+    plt.plot(zcrs[0])
+    plt.title('Action Rock')
+    plt.show()
+
 
 ## function defined to generate graph for MFCC(Mel-Frequency Cepstral Coefficients)
 '''
@@ -284,3 +292,4 @@ play_pause_stop()
 amplitude_wave()
 spectogram()
 rms_energy_spectogram()
+zero_crossing_rate()
