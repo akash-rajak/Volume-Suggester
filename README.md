@@ -2,9 +2,8 @@
 - Python tool to provide suggestion on volume at which the music audio file needs to be played for better experience and feeling.
 - In backend, it extracts various generic features for particular audio and analyze among them and provide feedback on volumne on it.  
 - This tools helps in maintaining goob vibes along the music playout.
-<p align="center">
-	<img width = 1000 height = 400 src="Images/Template Image.jpg" />
-</p>
+
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/1d332d56-b26a-4ba6-8b72-46efca4f1deb)
 ****
 
 ### REQUIREMENTS :
