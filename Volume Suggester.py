@@ -250,6 +250,28 @@ The MFCCs values on human speech seem to be lower and more dynamic than the musi
 def mel_frequency_cepstral_coefficients():
     global file, wav_file
 
+    x, sr = librosa.load(wav_file)
+    mfccs = librosa.feature.mfcc(y=x, sr=sr)
+    # Displaying  the MFCCs:
+    fig, ax = plt.subplots(figsize=(15, 3))
+    img = librosa.display.specshow(mfccs, sr=sr, x_axis='time')
+    fig.colorbar(img, ax=ax)
+    ax.set(title='Music - Warm Memories')
+    plt.show()
+
+def mel_frequency_spectogram():
+    global file, wav_file
+
+    y, sr = librosa.load(wav_file)
+    S = librosa.feature.melspectrogram(y=y, sr=sr)
+    S_dB = librosa.power_to_db(S, ref=np.max)
+    fig, ax = plt.subplots(figsize=(15, 3))
+    # fig, ax = plt.figure(figsize=(15, 3))
+    img = librosa.display.specshow(S_dB, sr=sr, x_axis='time')
+    fig.colorbar(img, ax=ax, format='%+2.0f dB')
+    ax.set(title='Mel-frequency spectrogram')
+    plt.show()
+
 
 ## function defined to get the visualization of dominancy of certain pitches{C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B} characteristics
 '''
@@ -293,3 +315,5 @@ amplitude_wave()
 spectogram()
 rms_energy_spectogram()
 zero_crossing_rate()
+mel_frequency_cepstral_coefficients()
+mel_frequency_spectogram()
