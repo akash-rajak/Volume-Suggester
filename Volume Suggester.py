@@ -297,6 +297,28 @@ Upbeat music like hip-hop, techno, or rock usually has a higher tempo compared t
 def tempogram():
     global file, wav_file
 
+    y, sr = librosa.load(wav_file)
+    hop_length = 512
+
+    # Compute local onset autocorrelation
+    oenv = librosa.onset.onset_strength(y=y, sr=sr, hop_length=hop_length)
+    times = librosa.times_like(oenv, sr=sr, hop_length=hop_length)
+    tempogram = librosa.feature.tempogram(onset_envelope=oenv, sr=sr, hop_length=hop_length)
+
+    # Estimate the global tempo for display purposes
+    tempo = librosa.feature.rhythm.tempo(onset_envelope=oenv, sr=sr, hop_length=hop_length)[0]
+
+
+    fig, ax = plt.subplots(nrows=2, figsize=(15, 6))
+    ax[0].plot(times, oenv, label='Onset strength')
+    ax[0].label_outer()
+    ax[0].legend(frameon=True)
+    librosa.display.specshow(tempogram, sr=sr, hop_length=hop_length, x_axis='time', y_axis='tempo', cmap='magma', ax=ax[1])
+    ax[1].axhline(tempo, color='w', linestyle='--', alpha=1, label='Estimated tempo={:g}'.format(tempo))
+    ax[1].legend(loc='upper right')
+    ax[1].set(title='Tempogram')
+    plt.show()
+
 
 ## defining main function
 def main():
@@ -324,3 +346,5 @@ rms_energy_spectogram()
 zero_crossing_rate()
 mel_frequency_cepstral_coefficients()
 mel_frequency_spectogram()
+chroma_feature()
+tempogram()
