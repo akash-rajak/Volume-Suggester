@@ -44,6 +44,11 @@
 	- Following Derived Audio Features:
 		- `Spectogram`
 		- `RMS/Energy Spectogram`
+		- `Zero Crossing Rate`
+		- `Mel Frequency Cepstral Coefficients`
+		- `Mel Frequency Spectogram`
+		- `Chroma Feature`
+		- `Tempogram`
 - After these feature extraction is done, user will be able to Play/Pause(using CTRL button) and Stop(using ESC button) the selected song.
 
 ****
