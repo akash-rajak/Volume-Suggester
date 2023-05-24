@@ -18,17 +18,19 @@ import pathlib
 from pathlib import Path
 
 
-file = "" ## global variable declared to store file location
-wav_file = "" ## global variable declared to store the file location
-paused = False # global to track if the audio is paused
-stopped = False # global variable declared to keep track of stopping audio
+## declared necessary global variable
+file = "" ## for selected file path
+wav_file = "" ## for converted wav path
+paused = False ## to keep track of audio being paused
+stopped = False ## to keep track of audio being stopped
 
+
+## function to convert .mp3 to .wav
 '''
 ffmpeg path 
 MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
 Personal : C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
 '''
-## function to convert .mp3 to .wav
 def mp3towav():
     global file, wav_file
 
@@ -38,11 +40,12 @@ def mp3towav():
     # print(wav_file)
     subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
+
+## function defined to play and pause the audio file
 '''
 ctrl - to play and pause
 esc - to stop
 '''
-## function defined to play and pause the audio file
 def play_pause_stop():
     global paused, stopped, file, wav_file
 
@@ -106,19 +109,7 @@ def play_pause_stop():
     # close PyAudio
     p.terminate()
 
-'''
-Channels: number of channels; 1 for mono, 2 for stereo audio
-Sample width: number of bytes per sample; 1 means 8-bit, 2 means 16-bit
-Frame rate/Sample rate: frequency of samples used (in Hertz)
-Frame width: Number of bytes for each “frame”. One frame contains a sample for each channel.
-Length: audio file length (in milliseconds)
-Frame count: the number of frames from the sample
-Intensity: loudness in dBFS (dB relative to the maximum possible loudness)
-'''
-## function defined to extract generic features of audio file
-
-# function to convert the information into
-# some readable format
+## function to get the audio duration
 def audio_duration(length):
     hours = length // 3600 # calculate in hours
     length %= 3600
@@ -128,6 +119,16 @@ def audio_duration(length):
 
     return hours, mins, seconds # returns the duration
 
+## function defined to extract generic features of audio file
+'''
+Channels: number of channels; 1 for mono, 2 for stereo audio
+Sample width: number of bytes per sample; 1 means 8-bit, 2 means 16-bit
+Frame rate/Sample rate: frequency of samples used (in Hertz)
+Frame width: Number of bytes for each “frame”. One frame contains a sample for each channel.
+Length: audio file length (in milliseconds)
+Frame count: the number of frames from the sample
+Intensity: loudness in dBFS (dB relative to the maximum possible loudness)
+'''
 def extract():
     global file, wav_file
     # Load files
@@ -179,6 +180,9 @@ def amplitude_wave():
 
 
 ## function defined to generate spectogram graph
+'''
+A visual representation of the spectrum of frequencies of a signal as it varies with time.
+'''
 def spectogram():
     global file, wav_file
 
@@ -193,6 +197,9 @@ def spectogram():
 
 
 ## function defined to generate RMS/Enerygy Spectogram
+'''
+Root Mean Square refers to total magnitude of the signal, which in layman terms can be interpreted as the loudness or energy parameter of the audio file.
+'''
 def rms_energy_spectogram():
     global file, wav_file
 
