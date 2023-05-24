@@ -55,6 +55,13 @@
 ### SCREENSHOTS :
 #### Amplitude over Time Plot
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/986d75e4-b448-47b0-8b48-89ad09b82bb7)
+#### Spectogram
+#### RMS/Energy Spectogram
+#### Zero Crossing Rate
+#### Mel Frequency Cepstral Coefficients
+#### Mel Frequency Spectogram
+#### Chroma Feature
+#### Tempogram
 
 ****
 
