@@ -182,6 +182,7 @@ def amplitude_wave():
 ## function defined to generate spectogram graph
 '''
 A visual representation of the spectrum of frequencies of a signal as it varies with time.
+The vertical axis shows frequency, the horizontal axis shows the time of the clip, and the color variation shows the intensity of the audio wave.
 '''
 def spectogram():
     global file, wav_file
@@ -199,6 +200,7 @@ def spectogram():
 ## function defined to generate RMS/Enerygy Spectogram
 '''
 Root Mean Square refers to total magnitude of the signal, which in layman terms can be interpreted as the loudness or energy parameter of the audio file.
+For loud and rock music RMS value is high
 '''
 def rms_energy_spectogram():
     global file, wav_file
@@ -217,6 +219,45 @@ def rms_energy_spectogram():
     librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max), y_axis='log', x_axis='time', ax=ax[1])
     ax[1].set(title='log Power spectrogram')
     plt.show()
+
+
+## function defined to generate graph for ZCR(Zero Crossing Rate)
+'''
+ZCR is the rate at which a signal changes from positive to zero to negative or from negative to zero to positive. 
+Its value has been widely used in both speech recognition and music information retrieval, being a key feature to classify percussive sounds. 
+Highly percussive sounds like rock, metal, emo, or punk music tend to have higher zero-crossing rate values.
+For loud and rock music ZCR value is high
+'''
+def zero_crossing_rate():
+    global file, wav_file
+
+
+## function defined to generate graph for MFCC(Mel-Frequency Cepstral Coefficients)
+'''
+MFCC is a representation of the short-term power spectrum of a sound, based on some transformation in a Mel-scale. 
+It is commonly used in speech recognition as people’s voices are usually on a certain range of frequency and different from one to another.
+The MFCCs values on human speech seem to be lower and more dynamic than the music files.
+'''
+def mel_frequency_cepstral_coefficients():
+    global file, wav_file
+
+
+## function defined to get the visualization of dominancy of certain pitches{C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B} characteristics
+'''
+Chroma feature visualization is to know how dominant the characteristics of a certain pitch {C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B} is present in the sampled frame.
+'''
+def chroma_feature():
+    global file, wav_file
+
+
+## function defined to get the tempogram
+'''
+Tempo refers to the speed of an audio piece, which is usually measured in beats per minute (bpm) units.
+Upbeat music like hip-hop, techno, or rock usually has a higher tempo compared to classical music, and 
+*** hence tempogram feature can be useful for music genre classification.
+'''
+def tempogram():
+    global file, wav_file
 
 
 ## defining main function
