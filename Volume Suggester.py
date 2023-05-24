@@ -21,6 +21,8 @@ from pathlib import Path
 ## declared necessary global variable
 file = "" ## for selected file path
 wav_file = "" ## for converted wav path
+plot_path = "" ## path to store the graph plots
+new_dir = ""
 paused = False ## to keep track of audio being paused
 stopped = False ## to keep track of audio being stopped
 
@@ -32,20 +34,22 @@ MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
 Personal : C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
 '''
 def mp3towav():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
 
     dir_name = os.path.dirname(file)
     base_file_name = Path(file).stem
     wav_file = dir_name + "/" + base_file_name + "_wav" + ".wav"
     print("\nConverted .mp3 to .wav file and saved to same location from where .mp3 file selected...")
-    print("Created : " + str(Path(wav_file)))
+    print("Created : " + base_file_name + "_wav" + ".wav")
     # print(wav_file)
-    subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
-    # subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
+    # subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
+    subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
     ## creating folder for saving output plot
-    new_dir = pathlib.Path(dir_name, "Output")
+    new_dir = pathlib.Path(dir_name, base_file_name + " - Plot")
     new_dir.mkdir(parents=True, exist_ok=True)
+    plot_path = os.path.dirname(file)
+    print(plot_path)
 
 
 ## function defined to play and pause the audio file
@@ -162,7 +166,7 @@ def extract():
 
 ## function defined to generate amplitude wave
 def amplitude_wave():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Amplitude Wave Plot...")
 
     file_name = os.path.basename(wav_file)
@@ -185,12 +189,14 @@ def amplitude_wave():
     # Add the audio data to the plot
     plt.plot(time_sf, soundwave_sf, label='Amplitude', alpha=0.5)
     plt.legend()
-    plt.show()
 
-    dir_name = os.path.dirname(file)
-    new_dir = pathlib.Path(dir_name, "Output")
-    new_dir.mkdir(parents=True, exist_ok=True)
-    file_name = base_file_name + ".xlsx"
+    ## saving the plot
+    # print(plot_path + "/output.jpg")
+    # print(str(new_dir) + "\\" + file_name + ' - Amplitude over Time.jpg')
+    print("Saved " + file_name + ' - Amplitude over Time.jpg...')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Amplitude over Time.jpg')
+
+    plt.show()
 
 
 ## function defined to generate spectogram graph
@@ -199,7 +205,7 @@ A visual representation of the spectrum of frequencies of a signal as it varies 
 The vertical axis shows frequency, the horizontal axis shows the time of the clip, and the color variation shows the intensity of the audio wave.
 '''
 def spectogram():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Spectogram Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -212,6 +218,11 @@ def spectogram():
     librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
     plt.colorbar()
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Spectogram.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Spectogram.jpg')
+
     plt.show()
 
 
@@ -221,7 +232,7 @@ Root Mean Square refers to total magnitude of the signal, which in layman terms 
 For loud and rock music RMS value is high
 '''
 def rms_energy_spectogram():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated RMS/Energy Spectogram Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -239,6 +250,11 @@ def rms_energy_spectogram():
     librosa.display.specshow(librosa.amplitude_to_db(S, ref=np.max), y_axis='log', x_axis='time', ax=ax[1])
     ax[1].set(title=file_name + ' - log Power spectrogram')
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - RMS Energy Spectogram.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - RMS Energy Spectogram.jpg')
+
     plt.show()
 
 
@@ -250,7 +266,7 @@ Highly percussive sounds like rock, metal, emo, or punk music tend to have highe
 For loud and rock music ZCR value is high
 '''
 def zero_crossing_rate():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Zero Crossing Rate Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -261,6 +277,11 @@ def zero_crossing_rate():
     plt.plot(zcrs[0])
     plt.title(file_name + ' - Zero Crossing Rate')
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Zero Crossing Rate.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Zero Crossing Rate.jpg')
+
     plt.show()
 
 
@@ -271,7 +292,7 @@ It is commonly used in speech recognition as people’s voices are usually on a 
 The MFCCs values on human speech seem to be lower and more dynamic than the music files.
 '''
 def mel_frequency_cepstral_coefficients():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Mel Frequency Cepstral Coefficients Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -283,10 +304,15 @@ def mel_frequency_cepstral_coefficients():
     fig.colorbar(img, ax=ax)
     ax.set(title=file_name + ' - Mel Frequency Cepstral Coefficients')
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Mel Frequency Cepstral Coefficients.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Mel Frequency Cepstral Coefficients.jpg')
+
     plt.show()
 
 def mel_frequency_spectogram():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Mel Frequency Spectogram Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -299,6 +325,11 @@ def mel_frequency_spectogram():
     fig.colorbar(img, ax=ax, format='%+2.0f dB')
     ax.set(title=file_name + ' - Mel frequency spectrogram')
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Mel frequency spectrogram.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Mel frequency spectrogram.jpg')
+
     plt.show()
 
 
@@ -307,7 +338,7 @@ def mel_frequency_spectogram():
 Chroma feature visualization is to know how dominant the characteristics of a certain pitch {C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B} is present in the sampled frame.
 '''
 def chroma_feature():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Chroma Feature Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -318,6 +349,11 @@ def chroma_feature():
     librosa.display.specshow(chromagram, x_axis='time', y_axis='chroma', hop_length=hop_length, cmap='coolwarm')
     plt.title(file_name + ' - Chroma Feature')
     # plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Chroma Feature.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Chroma Feature.jpg')
+
     plt.show()
 
 
@@ -328,7 +364,7 @@ Upbeat music like hip-hop, techno, or rock usually has a higher tempo compared t
 *** hence tempogram feature can be useful for music genre classification.
 '''
 def tempogram():
-    global file, wav_file
+    global file, wav_file, plot_path, new_dir
     print("\nGenerated Tempogram Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -353,6 +389,11 @@ def tempogram():
     ax[1].legend(loc='upper right')
     ax[1].set(title=file_name + ' - Tempogram')
     plt.legend()
+
+    ## saving the plot
+    print("Saved " + file_name + ' - Tempogram.jpg')
+    plt.savefig(str(new_dir) + "\\" + file_name + ' - Tempogram.jpg')
+
     plt.show()
 
 
