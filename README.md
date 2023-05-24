@@ -54,10 +54,8 @@
 ****
 
 ### SCREENSHOTS :
-
-<p align="center">
-	<img width = 1000 height = 400 src="Images/Amplitude Over Time Plot.jpg" />
-</p>
+#### Amplitude over Time Plot
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/986d75e4-b448-47b0-8b48-89ad09b82bb7)
 
 ****
 
