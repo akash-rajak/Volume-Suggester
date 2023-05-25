@@ -30,7 +30,7 @@ avg_rms = 0.0 ## to store the average rms value
 
 ## function to convert .mp3 to .wav file
 '''
-ffmpeg path 
+ffmpeg path for MAQ and personal
 MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
 Personal : C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
 '''
