@@ -25,7 +25,7 @@ plot_path = "" ## path to store the graph plots
 new_dir = "" ## to create a new directory of output
 paused = False ## to keep track of audio being paused
 stopped = False ## to keep track of audio being stopped
-avg_rms = 0.0
+avg_rms = 0.0 ## to store the average rms value
 
 
 ## function to convert .mp3 to .wav
