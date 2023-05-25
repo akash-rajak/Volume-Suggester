@@ -4,6 +4,7 @@
 - This tools helps in maintaining goob vibes along the music playout.
 
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/1d332d56-b26a-4ba6-8b72-46efca4f1deb)
+
 ****
 
 ### REQUIREMENTS :
@@ -70,6 +71,7 @@
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/fdf21d27-42f6-4320-85c8-a38366a77193)
 #### Tempogram
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/4fe7b54b-35f5-46c3-be01-22fb92bf1989)
+
 ****
 
 ### Owner :
