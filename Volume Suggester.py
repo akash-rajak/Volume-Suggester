@@ -397,14 +397,6 @@ def tempogram():
     plt.show()
 
 
-def spectral_centroid():
-    global file, wav_file
-
-
-def spectral_rolloff():
-    global file, wav_file
-
-
 ## defining main function
 def main():
     global file
