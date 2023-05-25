@@ -50,7 +50,7 @@ def mp3towav():
     new_dir = pathlib.Path(dir_name, base_file_name + " - Plot")
     new_dir.mkdir(parents=True, exist_ok=True)
     plot_path = os.path.dirname(file)
-    print(plot_path)
+    # print(plot_path)
 
 
 ## function defined to play and pause the audio file
