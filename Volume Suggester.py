@@ -146,7 +146,8 @@ def extract():
     global file, wav_file
     # Load files
     audio_segment = AudioSegment.from_file(wav_file)
-    # Print attributes
+
+    # Printing attributes
     print("\nAudio Generic Features : ")
     print(f"Channels: {audio_segment.channels}")
     print(f"Sample width: {audio_segment.sample_width}")
