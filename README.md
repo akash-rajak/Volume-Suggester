@@ -53,16 +53,23 @@
 ****
 
 ### SCREENSHOTS :
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/1c53e1fa-faec-4082-9951-078a4d6f46e3)
 #### Amplitude over Time Plot
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/986d75e4-b448-47b0-8b48-89ad09b82bb7)
 #### Spectogram
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/d3c6bdc3-03a6-4bf4-9363-9264e1bdd8c6)
 #### RMS/Energy Spectogram
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/90cc3291-46c0-43f2-a0c3-b065e81c3f32)
 #### Zero Crossing Rate
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/2b9f18bc-859f-41ce-910d-095f5cc37718)
 #### Mel Frequency Cepstral Coefficients
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/47809936-9d71-4241-97cf-c000f365960f)
 #### Mel Frequency Spectogram
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/fe9e501e-bb6d-4ba5-a322-ce80d8b89ab9)
 #### Chroma Feature
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/fdf21d27-42f6-4320-85c8-a38366a77193)
 #### Tempogram
-
+![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/4fe7b54b-35f5-46c3-be01-22fb92bf1989)
 ****
 
 ### Owner :
