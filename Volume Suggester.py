@@ -28,7 +28,7 @@ stopped = False ## to keep track of audio being stopped
 avg_rms = 0.0 ## to store the average rms value
 
 
-## function to convert .mp3 to .wav
+## function to convert .mp3 to .wav file
 '''
 ffmpeg path 
 MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
