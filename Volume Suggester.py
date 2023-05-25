@@ -409,6 +409,7 @@ def tempogram():
 ## function defined to get suggestion on volume
 def suggest_volume():
     global avg_rms
+    print("\nSuggestion on volumne : ")
 
     if(avg_rms>0.00001):
         print("High")
