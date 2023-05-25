@@ -25,6 +25,7 @@ plot_path = "" ## path to store the graph plots
 new_dir = "" ## to create a new directory of output
 paused = False ## to keep track of audio being paused
 stopped = False ## to keep track of audio being stopped
+avg_rms = 0.0
 
 
 ## function to convert .mp3 to .wav
@@ -232,7 +233,7 @@ Root Mean Square refers to total magnitude of the signal, which in layman terms 
 For loud and rock music RMS value is high
 '''
 def rms_energy_spectogram():
-    global file, wav_file, plot_path, new_dir
+    global file, wav_file, plot_path, new_dir, avg_rms
     print("\nGenerated RMS/Energy Spectogram Plot...")
     file_name = os.path.basename(wav_file)
 
@@ -244,6 +245,14 @@ def rms_energy_spectogram():
     fig, ax = plt.subplots(figsize=(15, 6), nrows=2, sharex=True)
     times = librosa.times_like(rms)
     ax[0].semilogy(times, rms[0], label='RMS Energy')
+
+    ## calculating average rms
+    for i in rms[0]:
+        avg_rms = avg_rms + i
+
+    avg_rms = avg_rms/len(times)
+    print(avg_rms)
+
     ax[0].set(title=file_name + ' - RMS Energy', xticks=[])
     ax[0].legend()
     ax[0].label_outer()
@@ -397,6 +406,16 @@ def tempogram():
     plt.show()
 
 
+## function defined to get suggestion on volume
+def suggest_volume():
+    global avg_rms
+
+    if(avg_rms>0.00001):
+        print("High")
+    else:
+        print("Low")
+
+
 ## defining main function
 def main():
     global file
@@ -425,3 +444,4 @@ mel_frequency_cepstral_coefficients()
 mel_frequency_spectogram()
 chroma_feature()
 tempogram()
+suggest_volume()
