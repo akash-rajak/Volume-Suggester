@@ -43,8 +43,8 @@ def mp3towav():
     print("\nConverted .mp3 to .wav file and saved to same location from where .mp3 file selected...")
     print("Created : " + base_file_name + "_wav" + ".wav")
     # print(wav_file)
-    # subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
-    subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
+    subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
+    # subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
     ## creating folder for saving output plot
     new_dir = pathlib.Path(dir_name, base_file_name + " - Plot")
@@ -425,6 +425,7 @@ def main():
     file = filedialog.askopenfilename(title="Select an Audio file", filetypes=[("Audio Files", "*.mp3"), ("All Files", "*.*")])
     if (file != ""):
         print(file)
+        mp3towav()
         # playsound(file)
 
         ## calling play_pause_stop function
@@ -436,7 +437,6 @@ def main():
         
 ## calling main function
 main()
-mp3towav()
 extract()
 play_pause_stop()
 amplitude_wave()
