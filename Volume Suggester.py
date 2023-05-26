@@ -282,7 +282,7 @@ def zero_crossing_rate():
 
     y, sr = librosa.load(wav_file)
     zcrs = librosa.feature.zero_crossing_rate(y)
-    print(f"Zero crossing rate: {sum(librosa.zero_crossings(y))}")
+    # print(f"Zero crossing rate: {sum(librosa.zero_crossings(y))}")
     plt.figure(figsize=(15, 3))
     plt.plot(zcrs[0])
     plt.title(file_name + ' - Zero Crossing Rate')
@@ -410,12 +410,12 @@ def tempogram():
 ## function defined to get suggestion on volume
 def suggest_volume():
     global avg_rms
-    print("\nSuggestion on volumne : ")
+    print("\nSuggestion on volumne : ", end = ' ')
 
     if(avg_rms>0.00001):
-        print("High")
+        print("High Volume")
     else:
-        print("Low")
+        print("Low Volume")
 
 
 ## defining main function
@@ -427,9 +427,6 @@ def main():
         print(file)
         mp3towav()
         # playsound(file)
-
-        ## calling play_pause_stop function
-        # play_pause_stop(file)
     else:
         print("No File Selected")
 
