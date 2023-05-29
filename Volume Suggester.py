@@ -260,7 +260,7 @@ def rms_energy_spectogram():
         avg_rms = avg_rms + i
 
     avg_rms = avg_rms/len(times)
-    print(avg_rms)
+    # print(avg_rms)
 
     ax[0].set(title=file_name + ' - RMS Energy', xticks=[])
     ax[0].legend()
