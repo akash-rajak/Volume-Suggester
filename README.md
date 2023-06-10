@@ -3,11 +3,41 @@
 - In backend, it extracts various generic features for particular audio and analyze among them and provide feedback on volumne on it.  
 - This tools helps in maintaining goob vibes along the music playout.
 
+<p align = "center">
+	<img src = "https://img.shields.io/github/stars/akash-rajak/Volume-Suggester?style=social", alt = "GitHub Repo stars">
+	<img src = "https://img.shields.io/github/forks/akash-rajak/Volume-Suggester?style=social", alt = "GitHub Repo forks">
+	<img src = "https://img.shields.io/github/watchers/akash-rajak/Volume-Suggester?style=social", alt = "GitHub Repo watchers">
+	<img src = "https://img.shields.io/github/contributors/akash-rajak/Volume-Suggester?style=social", alt = "GitHub contributors">
+</p>
+<p align = "center">
+	<img src = "https://img.shields.io/github/languages/count/akash-rajak/Volume-Suggester?style=social", alt = "GitHub language count">
+	<img src = "https://img.shields.io/github/languages/top/akash-rajak/Volume-Suggester?style=social", alt = "GitHub top language">
+	<img src = "https://img.shields.io/github/directory-file-count/akash-rajak/Volume-Suggester?style=social", alt = "GitHub repo file count">
+	<img src = "https://img.shields.io/github/repo-size/akash-rajak/Volume-Suggester?style=social", alt = "GitHub repo size">
+</p>
+<p align = "center">
+	<img src = "https://img.shields.io/github/issues/akash-rajak/Volume-Suggester", alt = "GitHub issues">
+	<img src = "https://img.shields.io/github/issues-closed/akash-rajak/Volume-Suggester", alt = "GitHub closed issues">
+	<img src = "https://img.shields.io/github/issues-pr/akash-rajak/Volume-Suggester", alt = "GitHub pull requests">
+	<img src = "https://img.shields.io/github/issues-pr-closed/akash-rajak/Volume-Suggester", alt = "GitHub closed pull requests">
+</p>
+<p align = "center">
+	<img src = "https://img.shields.io/github/commit-activity/t/akash-rajak/Volume-Suggester", alt = "GitHub commit activity">
+	<img src = "https://img.shields.io/github/commit-activity/y/akash-rajak/Volume-Suggester", alt = "GitHub commit activity/year">
+	<img src = "https://img.shields.io/github/commit-activity/m/akash-rajak/Volume-Suggester", alt = "GitHub commit activity/month">
+	<img src = "https://img.shields.io/github/commit-activity/w/akash-rajak/Volume-Suggester", alt = "GitHub commit activity/week">
+	<img src = "https://img.shields.io/github/last-commit/akash-rajak/Volume-Suggester", alt = "GitHub last commit">
+	<img src = "https://img.shields.io/github/discussions/akash-rajak/Volume-Suggester", alt = "GitHub Discussions">
+</p>
+<p align = "center">
+	<img src = "https://img.shields.io/github/license/akash-rajak/Volume-Suggester", alt = "Github">
+</p>
+
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/1d332d56-b26a-4ba6-8b72-46efca4f1deb)
 
 ****
 
-### REQUIREMENTS :
+### 📌REQUIREMENTS :
 - python 3
 - tkinter
 - from tkinter import filedialog
@@ -28,7 +58,7 @@
 
 ****
 
-### How this Script works :
+### 📌How this Script works :
 - First user need to download the script and run Volume Suggester.py in the local system.
 - After running it, user will be prompted to select an audio file(mp3 file) using dialog box.
 - Once user has selected the audio file, following feature extraction and analysis graph will be generated at the backend.
@@ -53,7 +83,7 @@
 
 ****
 
-### SCREENSHOTS :
+### 📌SCREENSHOTS :
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/1c53e1fa-faec-4082-9951-078a4d6f46e3)
 #### Amplitude over Time Plot
 ![image](https://github.com/akash-rajak/Volume-Suggester/assets/57003737/986d75e4-b448-47b0-8b48-89ad09b82bb7)
@@ -74,5 +104,12 @@
 
 ****
 
-### Owner :
-- Akash Rajak
+### 🌟Stargazers Over Time:
+[![Stargazers over time](https://starchart.cc/akash-rajak/Volume-Suggester.svg)](https://starchart.cc/akash-rajak/Volume-Suggester)
+
+****
+
+### 📌Contributors:
+<a href="https://github.com/akash-rajak/Volume-Suggester">
+  <img src="https://contrib.rocks/image?repo=akash-rajak/Volume-Suggester" />
+</a>
