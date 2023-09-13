@@ -37,11 +37,6 @@ avg_rms = 0.0 ## to store the average rms value
 
 
 ## function to convert .mp3 to .wav file
-'''
-ffmpeg path for MAQ and personal
-MAQ : C:/Users/MAQ/Path_programs/ffmpeg.exe
-Personal : C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe
-'''
 def mp3towav():
     global file, wav_file, plot_path, new_dir
 
@@ -51,7 +46,6 @@ def mp3towav():
     print("\nConverted .mp3 to .wav file and saved to same location from where .mp3 file selected...")
     print("Created : " + base_file_name + "_wav" + ".wav")
     # print(wav_file)
-    # subprocess.call(['C:/Users/MAQ/Path_programs/ffmpeg.exe', '-i', file, wav_file])
     subprocess.call(['C:/Users/aakas/PATH_Programs/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe', '-i', file, wav_file])
 
     ## creating folder for saving output plot
